@@ -28,7 +28,7 @@ def main():
             return title.lower().title()
 
     # Streamlit file uploader
-    uploaded_file = 'App_Card_Data_0527_with_dates'
+    uploaded_file = 'App_Card_Data_0527_with_dates.csv'
 
     if uploaded_file is not None:
         df = load_data(uploaded_file)
