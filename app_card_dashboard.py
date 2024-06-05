@@ -10,7 +10,6 @@ Original file is located at
 import pandas as pd
 import matplotlib.pyplot as plt
 import streamlit as st
-from datetime import datetime
 
 def main():
     st.title("App Card Dashboard")
@@ -57,29 +56,31 @@ def main():
         # Streamlit selectbox for card titles
         card_title = st.selectbox('Select a card:', card_titles)
 
+        # List of KPIs
+        kpis = [
+            "Clicks", "Impressions", "Click-Through Rate Percent",
+            "Unique Impressions", "Unique Clicks",
+            "Unique Click-Through Rate Percent", "Exposure Rating", "Utility Rating"
+        ]
+
+        # Streamlit selectbox for KPIs
+        selected_kpi = st.selectbox('Select a KPI:', kpis)
+
         # Function to plot time series
-        def plot_time_series(card_title):
+        def plot_time_series(card_title, selected_kpi):
             card_data = df[df['TITLE'] == card_title]
 
-            kpis = [
-                "Clicks", "Impressions", "Click-Through Rate Percent",
-                "Unique Impressions", "Unique Clicks",
-                "Unique Click-Through Rate Percent", "Exposure Rating", "Utility Rating"
-            ]
+            plt.figure(figsize=(10, 5))
+            plt.plot(card_data['date'], card_data[selected_kpi], marker='o')
+            plt.title(f"{selected_kpi} Time-Series for {card_title}")
+            plt.xlabel("Date")
+            plt.ylabel(selected_kpi.capitalize())
+            plt.xticks(rotation=45)
+            st.pyplot(plt)
 
-            for kpi in kpis:
-                plt.figure(figsize=(10, 5))
-                plt.bar(card_data['date'], card_data[kpi])
-                plt.title(f"{kpi} Time-Series for {card_title}")
-                plt.xlabel("Date")
-                plt.ylabel(kpi.capitalize())
-                plt.xticks(rotation=45)
-                st.pyplot(plt)
-                plt.clf()
-
-        # Plot the time series for the selected card title
-        if card_title:
-            plot_time_series(card_title)
+        # Plot the time series for the selected card title and KPI
+        if card_title and selected_kpi:
+            plot_time_series(card_title, selected_kpi)
 
 if __name__ == "__main__":
     main()
