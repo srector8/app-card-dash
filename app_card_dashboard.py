@@ -71,7 +71,7 @@ def main():
             card_data = df[df['TITLE'] == card_title]
 
             chart = alt.Chart(card_data).mark_line().encode(
-                x='date:T',
+                x=alt.X('date:T', title='Date', axis=alt.Axis(format='%m/%d')),
                 y=alt.Y(selected_kpi, title=selected_kpi.capitalize()),
                 tooltip=['date:T', selected_kpi]
             ).properties(
@@ -88,3 +88,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
