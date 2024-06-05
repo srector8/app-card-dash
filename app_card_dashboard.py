@@ -50,6 +50,11 @@ def main():
         # Apply the title transformation
         df['TITLE'] = df['TITLE'].apply(transform_title)
 
+        # Filter titles with less than 20 date entries
+        title_counts = df['TITLE'].value_counts()
+        valid_titles = title_counts[title_counts >= 20].index.tolist()
+        df = df[df['TITLE'].isin(valid_titles)]
+
         # List of card titles for dropdown
         card_titles = df['TITLE'].unique()
 
@@ -88,4 +93,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
