@@ -67,16 +67,11 @@ def main():
         selected_kpi = st.selectbox('Select a KPI:', kpis)
 
         # Function to plot time series
-        def plot_time_series(card_title, selected_kpi):
-            card_data = df[df['TITLE'] == card_title]
+    def plot_time_series(card_title, selected_kpi):
+        card_data = df[df['TITLE'] == card_title]
 
-            plt.figure(figsize=(10, 5))
-            plt.plot(card_data['date'], card_data[selected_kpi], marker='o')
-            plt.title(f"{selected_kpi} Time-Series for {card_title}")
-            plt.xlabel("Date")
-            plt.ylabel(selected_kpi.capitalize())
-            plt.xticks(rotation=45)
-            st.pyplot(plt)
+        st.line_chart(card_data[['date', selected_kpi]].set_index('date'))
+
 
         # Plot the time series for the selected card title and KPI
         if card_title and selected_kpi:
