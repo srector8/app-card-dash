@@ -12,68 +12,74 @@ import matplotlib.pyplot as plt
 import streamlit as st
 from datetime import datetime
 
-# Function to load data
-def load_data(file):
-    df = pd.read_csv(file)
-    return df
+def main():
+    st.title("App Card Dashboard")
 
-# Function to transform title
-def transform_title(title):
-    if pd.isnull(title):
-        return title
-    else:
-        return title.lower().title()
+    # Function to load data
+    def load_data(file):
+        df = pd.read_csv(file)
+        return df
 
-# Streamlit file uploader
-uploaded_file = st.file_uploader("Choose a file")
+    # Function to transform title
+    def transform_title(title):
+        if pd.isnull(title):
+            return title
+        else:
+            return title.lower().title()
 
-if uploaded_file is not None:
-    df = load_data(uploaded_file)
+    # Streamlit file uploader
+    uploaded_file = st.file_uploader("Choose a file")
 
-    # Convert 'DATE' column to datetime if it's not already
-    df['date'] = pd.to_datetime(df['date'])
+    if uploaded_file is not None:
+        df = load_data(uploaded_file)
 
-    # Renaming KPI's
-    df.rename(columns={
-        'CLICKS': 'Clicks',
-        'IMPRESSIONS': 'Impressions',
-        'CLICKTHROUGH_RATE_PERCENT': 'Click-Through Rate Percent',
-        'UNIQUE_IMPRESSIONS': 'Unique Impressions',
-        'UNIQUE_CLICKS': 'Unique Clicks',
-        'UNIQUE_CLICKTHROUGH_RATE_PERCENT': 'Unique Click-Through Rate Percent',
-        'EXPOSURE_RATING': 'Exposure Rating',
-        'UTILITY_RATING': 'Utility Rating'
-    }, inplace=True)
+        # Convert 'DATE' column to datetime if it's not already
+        df['date'] = pd.to_datetime(df['date'])
 
-    # Apply the title transformation
-    df['TITLE'] = df['TITLE'].apply(transform_title)
+        # Renaming KPI's
+        df.rename(columns={
+            'CLICKS': 'Clicks',
+            'IMPRESSIONS': 'Impressions',
+            'CLICKTHROUGH_RATE_PERCENT': 'Click-Through Rate Percent',
+            'UNIQUE_IMPRESSIONS': 'Unique Impressions',
+            'UNIQUE_CLICKS': 'Unique Clicks',
+            'UNIQUE_CLICKTHROUGH_RATE_PERCENT': 'Unique Click-Through Rate Percent',
+            'EXPOSURE_RATING': 'Exposure Rating',
+            'UTILITY_RATING': 'Utility Rating'
+        }, inplace=True)
 
-    # List of card titles for dropdown
-    card_titles = df['TITLE'].unique()
+        # Apply the title transformation
+        df['TITLE'] = df['TITLE'].apply(transform_title)
 
-    # Streamlit selectbox for card titles
-    card_title = st.selectbox('Select a card:', card_titles)
+        # List of card titles for dropdown
+        card_titles = df['TITLE'].unique()
 
-    # Function to plot time series
-    def plot_time_series(card_title):
-        card_data = df[df['TITLE'] == card_title]
+        # Streamlit selectbox for card titles
+        card_title = st.selectbox('Select a card:', card_titles)
 
-        kpis = [
-            "Clicks", "Impressions", "Click-Through Rate Percent",
-            "Unique Impressions", "Unique Clicks",
-            "Unique Click-Through Rate Percent", "Exposure Rating", "Utility Rating"
-        ]
+        # Function to plot time series
+        def plot_time_series(card_title):
+            card_data = df[df['TITLE'] == card_title]
 
-        for kpi in kpis:
-            plt.figure(figsize=(10, 5))
-            plt.bar(card_data['date'], card_data[kpi])
-            plt.title(f"{kpi} Time-Series for {card_title}")
-            plt.xlabel("Date")
-            plt.ylabel(kpi.capitalize())
-            plt.xticks(rotation=45)
-            st.pyplot(plt)
-            plt.clf()
+            kpis = [
+                "Clicks", "Impressions", "Click-Through Rate Percent",
+                "Unique Impressions", "Unique Clicks",
+                "Unique Click-Through Rate Percent", "Exposure Rating", "Utility Rating"
+            ]
 
-    # Plot the time series for the selected card title
-    if card_title:
-        plot_time_series(card_title)
+            for kpi in kpis:
+                plt.figure(figsize=(10, 5))
+                plt.bar(card_data['date'], card_data[kpi])
+                plt.title(f"{kpi} Time-Series for {card_title}")
+                plt.xlabel("Date")
+                plt.ylabel(kpi.capitalize())
+                plt.xticks(rotation=45)
+                st.pyplot(plt)
+                plt.clf()
+
+        # Plot the time series for the selected card title
+        if card_title:
+            plot_time_series(card_title)
+
+if __name__ == "__main__":
+    main()
