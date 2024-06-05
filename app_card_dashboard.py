@@ -8,7 +8,7 @@ Original file is located at
 """
 
 import pandas as pd
-import matplotlib.pyplot as plt
+import altair as alt
 import streamlit as st
 
 def main():
@@ -67,11 +67,20 @@ def main():
         selected_kpi = st.selectbox('Select a KPI:', kpis)
 
         # Function to plot time series
-    def plot_time_series(card_title, selected_kpi):
-        card_data = df[df['TITLE'] == card_title]
+        def plot_time_series(card_title, selected_kpi):
+            card_data = df[df['TITLE'] == card_title]
 
-        st.line_chart(card_data[['date', selected_kpi]].set_index('date'))
+            chart = alt.Chart(card_data).mark_line().encode(
+                x='date:T',
+                y=alt.Y(selected_kpi, title=selected_kpi.capitalize()),
+                tooltip=['date:T', selected_kpi]
+            ).properties(
+                title=f"{selected_kpi} Time-Series for {card_title}",
+                width=800,
+                height=400
+            ).interactive()
 
+            st.altair_chart(chart)
 
         # Plot the time series for the selected card title and KPI
         if card_title and selected_kpi:
