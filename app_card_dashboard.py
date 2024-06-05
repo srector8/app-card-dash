@@ -13,7 +13,7 @@ import streamlit as st
 
 def main():
     st.title("App Card Dashboard")
-
+    st.write('Hello')
     # Function to load data
     def load_data(file):
         df = pd.read_csv(file)
