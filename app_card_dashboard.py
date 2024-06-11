@@ -92,8 +92,8 @@ def main():
 
             # Define the dates and colors for vertical lines
             important_dates = pd.DataFrame({
-                'date': pd.to_datetime(['2024-05-14', '2024-05-17']),  # Add more dates as needed
-                'color': ['red', 'red']  # Add more colors corresponding to dates
+                'date': pd.to_datetime(['2024-05-14', '2024-05-17', '2024-05-23', '2024-05-28', '2024-05-31', '2024-06-04', '2024-06-08', '2024-06-10']),  # Add more dates as needed
+                'color': ['red', 'red', 'red', 'red', 'red', 'red', 'red', 'red']  # Add more colors corresponding to dates
             })
 
             rules = alt.Chart(important_dates).mark_rule().encode(
