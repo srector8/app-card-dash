@@ -17,6 +17,7 @@ def main():
     st.write('Unique Click-Through Rate Percentage - The percentage of unique clicks over the number of unique impressions')
     st.write('Utility Rating - The ratio of clicks to unique clicks')
     st.write('Exposure Rating - The ratio of impressions to unique impressions')
+    st.write('Ticks mark gamedays')
 
     # Function to load data
     def load_data(file):
