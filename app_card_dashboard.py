@@ -107,15 +107,21 @@ def main():
             st.altair_chart(final_chart.interactive())
 
             # Calculate and display pre and post game averages
+            pre_game_values = []
+            post_game_values = []
+
             for game_date in important_dates['date']:
                 pre_game_date = game_date - pd.Timedelta(days=1)
                 post_game_date = game_date + pd.Timedelta(days=1)
 
-                pre_game_mean = card_data[card_data['date'] == pre_game_date][selected_kpi].mean()
-                post_game_mean = card_data[card_data['date'] == post_game_date][selected_kpi].mean()
+                pre_game_values.append(card_data[card_data['date'] == pre_game_date][selected_kpi].mean())
+                post_game_values.append(card_data[card_data['date'] == post_game_date][selected_kpi].mean())
 
-                st.write(f"The mean {selected_kpi} one day before {game_date.date()} is: {pre_game_mean}")
-                st.write(f"The mean {selected_kpi} one day after {game_date.date()} is: {post_game_mean}")
+            pre_game_mean = pd.Series(pre_game_values).mean()
+            post_game_mean = pd.Series(post_game_values).mean()
+
+            st.write(f"The mean {selected_kpi} one day before game days is: {pre_game_mean}")
+            st.write(f"The mean {selected_kpi} one day after game days is: {post_game_mean}")
 
         # Plot the time series for the selected card title and KPI
         if card_title and selected_kpi:
