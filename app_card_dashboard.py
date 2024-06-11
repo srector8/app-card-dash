@@ -94,7 +94,7 @@ def main():
             rule_5_14 = alt.Chart(pd.DataFrame({'date': [pd.to_datetime('2024-05-14')]})).mark_rule(color='red').encode(
                 x='date:T'
             )
-            rule_5_17 = alt.Chart(pd.DataFrame({'date': [pd.to_datetime('2024-05-17')]})).mark_rule(color='blue').encode(
+            rule_5_17 = alt.Chart(pd.DataFrame({'date': [pd.to_datetime('2024-05-17')]})).mark_rule(color='red').encode(
                 x='date:T'
             )
 
