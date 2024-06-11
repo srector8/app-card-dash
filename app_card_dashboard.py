@@ -92,8 +92,8 @@ def main():
 
             # Define the dates and colors for vertical lines
             important_dates = pd.DataFrame({
-                'date': pd.to_datetime(['2024-05-14', '2024-05-17', '2024-05-23', '2024-05-28', '2024-05-31', '2024-06-04', '2024-06-08', '2024-06-10', '2024-06-18', '2024-06-28', '2024-07-07', '2024-07-10', '2024-07-14', '2024-08-20', '2024-08-23', '2024-09-01', '2024-09-03', '2024-09-06', '2024-09-17', '2024-09-19']),  # Add more dates as needed
-                'color': ['red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red']  # Add more colors corresponding to dates
+                'date': pd.to_datetime(['2024-05-14', '2024-05-17']),  # Add more dates as needed
+                'color': ['red', 'blue']  # Add more colors corresponding to dates
             })
 
             rules = alt.Chart(important_dates).mark_rule().encode(
@@ -105,6 +105,17 @@ def main():
             final_chart = base_chart + rules
 
             st.altair_chart(final_chart.interactive())
+
+            # Calculate and display pre and post game averages
+            for game_date in important_dates['date']:
+                pre_game_date = game_date - pd.Timedelta(days=1)
+                post_game_date = game_date + pd.Timedelta(days=1)
+
+                pre_game_mean = card_data[card_data['date'] == pre_game_date][selected_kpi].mean()
+                post_game_mean = card_data[card_data['date'] == post_game_date][selected_kpi].mean()
+
+                st.write(f"The mean {selected_kpi} one day before {game_date.date()} is: {pre_game_mean}")
+                st.write(f"The mean {selected_kpi} one day after {game_date.date()} is: {post_game_mean}")
 
         # Plot the time series for the selected card title and KPI
         if card_title and selected_kpi:
