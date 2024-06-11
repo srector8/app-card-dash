@@ -93,7 +93,7 @@ def main():
             # Define the dates and colors for vertical lines
             important_dates = pd.DataFrame({
                 'date': pd.to_datetime(['2024-05-14', '2024-05-17']),  # Add more dates as needed
-                'color': ['red', 'blue']  # Add more colors corresponding to dates
+                'color': ['red', 'red']  # Add more colors corresponding to dates
             })
 
             rules = alt.Chart(important_dates).mark_rule().encode(
@@ -123,9 +123,9 @@ def main():
             game_day_mean = pd.Series(game_day_values).mean()
             post_game_mean = pd.Series(post_game_values).mean()
 
-            st.write(f"The mean {selected_kpi} one day before game days is: {pre_game_mean}")
-            st.write(f"The mean {selected_kpi} on game days is: {game_day_mean}")
-            st.write(f"The mean {selected_kpi} one day after game days is: {post_game_mean}")
+            st.write(f"The mean {selected_kpi.lower()} one day before game days is: {pre_game_mean}")
+            st.write(f"The mean {selected_kpi.lower()} on game days is: {game_day_mean}")
+            st.write(f"The mean {selected_kpi.lower()} one day after game days is: {post_game_mean}")
 
         # Plot the time series for the selected card title and KPI
         if card_title and selected_kpi:
