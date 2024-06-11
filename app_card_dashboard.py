@@ -100,28 +100,28 @@ def main():
             rule_5_23 = alt.Chart(pd.DataFrame({'date': [pd.to_datetime('2024-05-23')]})).mark_rule(color='red').encode(
                 x='date:T'
             )
-             rule_5_28 = alt.Chart(pd.DataFrame({'date': [pd.to_datetime('2024-05-28')]})).mark_rule(color='red').encode(
+            rule_5_28 = alt.Chart(pd.DataFrame({'date': [pd.to_datetime('2024-05-28')]})).mark_rule(color='red').encode(
                 x='date:T'
             )
-             rule_5_31 = alt.Chart(pd.DataFrame({'date': [pd.to_datetime('2024-05-31')]})).mark_rule(color='red').encode(
+            rule_5_31 = alt.Chart(pd.DataFrame({'date': [pd.to_datetime('2024-05-31')]})).mark_rule(color='red').encode(
                 x='date:T'
             )
-             rule_6_4 = alt.Chart(pd.DataFrame({'date': [pd.to_datetime('2024-06-04')]})).mark_rule(color='red').encode(
+            rule_6_4 = alt.Chart(pd.DataFrame({'date': [pd.to_datetime('2024-06-04')]})).mark_rule(color='red').encode(
                 x='date:T'
             )
-             rule_6_8 = alt.Chart(pd.DataFrame({'date': [pd.to_datetime('2024-06-08')]})).mark_rule(color='red').encode(
+            rule_6_8 = alt.Chart(pd.DataFrame({'date': [pd.to_datetime('2024-06-08')]})).mark_rule(color='red').encode(
                 x='date:T'
             )
-             rule_6_10 = alt.Chart(pd.DataFrame({'date': [pd.to_datetime('2024-06-10')]})).mark_rule(color='red').encode(
+            rule_6_10 = alt.Chart(pd.DataFrame({'date': [pd.to_datetime('2024-06-10')]})).mark_rule(color='red').encode(
                 x='date:T'
             )
-             rule_6_18 = alt.Chart(pd.DataFrame({'date': [pd.to_datetime('2024-06-18')]})).mark_rule(color='red').encode(
+            rule_6_18 = alt.Chart(pd.DataFrame({'date': [pd.to_datetime('2024-06-18')]})).mark_rule(color='red').encode(
                 x='date:T'
             )
-             rule_6_28 = alt.Chart(pd.DataFrame({'date': [pd.to_datetime('2024-06-28')]})).mark_rule(color='red').encode(
+            rule_6_28 = alt.Chart(pd.DataFrame({'date': [pd.to_datetime('2024-06-28')]})).mark_rule(color='red').encode(
                 x='date:T'
             )
-             rule_7_7 = alt.Chart(pd.DataFrame({'date': [pd.to_datetime('2024-07-07')]})).mark_rule(color='red').encode(
+            rule_7_7 = alt.Chart(pd.DataFrame({'date': [pd.to_datetime('2024-07-07')]})).mark_rule(color='red').encode(
                 x='date:T'
             )
             rule_7_10 = alt.Chart(pd.DataFrame({'date': [pd.to_datetime('2024-07-10')]})).mark_rule(color='red').encode(
