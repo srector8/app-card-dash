@@ -17,6 +17,7 @@ def main():
     st.write('Unique Click-Through Rate Percentage - The percentage of unique clicks over the number of unique impressions')
     st.write('Utility Rating - The ratio of clicks to unique clicks')
     st.write('Exposure Rating - The ratio of impressions to unique impressions')
+
     # Function to load data
     def load_data(file):
         df = pd.read_csv(file)
@@ -78,7 +79,8 @@ def main():
         def plot_time_series(card_title, selected_kpi):
             card_data = df[df['TITLE'] == card_title]
 
-            chart = alt.Chart(card_data).mark_line().encode(
+            # Define the base chart
+            base_chart = alt.Chart(card_data).mark_line().encode(
                 x=alt.X('date:T', title='Date', axis=alt.Axis(format='%m/%d')),
                 y=alt.Y(selected_kpi, title=selected_kpi.capitalize()),
                 tooltip=['date:T', selected_kpi]
@@ -86,9 +88,20 @@ def main():
                 title=f"{selected_kpi} Time-Series for {card_title}",
                 width=800,
                 height=400
-            ).interactive()
+            )
 
-            st.altair_chart(chart)
+            # Define vertical lines for 5/14 and 5/17
+            rule_5_14 = alt.Chart(pd.DataFrame({'date': [pd.to_datetime('2024-05-14')]})).mark_rule(color='red').encode(
+                x='date:T'
+            )
+            rule_5_17 = alt.Chart(pd.DataFrame({'date': [pd.to_datetime('2024-05-17')]})).mark_rule(color='blue').encode(
+                x='date:T'
+            )
+
+            # Combine the base chart with the rules
+            final_chart = base_chart + rule_5_14 + rule_5_17
+
+            st.altair_chart(final_chart.interactive())
 
         # Plot the time series for the selected card title and KPI
         if card_title and selected_kpi:
