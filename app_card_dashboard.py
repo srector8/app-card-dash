@@ -90,70 +90,19 @@ def main():
                 height=400
             )
 
-            # Define vertical lines for 5/14 and 5/17
-            rule_5_14 = alt.Chart(pd.DataFrame({'date': [pd.to_datetime('2024-05-14')]})).mark_rule(color='red').encode(
-                x='date:T'
-            )
-            rule_5_17 = alt.Chart(pd.DataFrame({'date': [pd.to_datetime('2024-05-17')]})).mark_rule(color='red').encode(
-                x='date:T'
-            )
-            rule_5_23 = alt.Chart(pd.DataFrame({'date': [pd.to_datetime('2024-05-23')]})).mark_rule(color='red').encode(
-                x='date:T'
-            )
-            rule_5_28 = alt.Chart(pd.DataFrame({'date': [pd.to_datetime('2024-05-28')]})).mark_rule(color='red').encode(
-                x='date:T'
-            )
-            rule_5_31 = alt.Chart(pd.DataFrame({'date': [pd.to_datetime('2024-05-31')]})).mark_rule(color='red').encode(
-                x='date:T'
-            )
-            rule_6_4 = alt.Chart(pd.DataFrame({'date': [pd.to_datetime('2024-06-04')]})).mark_rule(color='red').encode(
-                x='date:T'
-            )
-            rule_6_8 = alt.Chart(pd.DataFrame({'date': [pd.to_datetime('2024-06-08')]})).mark_rule(color='red').encode(
-                x='date:T'
-            )
-            rule_6_10 = alt.Chart(pd.DataFrame({'date': [pd.to_datetime('2024-06-10')]})).mark_rule(color='red').encode(
-                x='date:T'
-            )
-            rule_6_18 = alt.Chart(pd.DataFrame({'date': [pd.to_datetime('2024-06-18')]})).mark_rule(color='red').encode(
-                x='date:T'
-            )
-            rule_6_28 = alt.Chart(pd.DataFrame({'date': [pd.to_datetime('2024-06-28')]})).mark_rule(color='red').encode(
-                x='date:T'
-            )
-            rule_7_7 = alt.Chart(pd.DataFrame({'date': [pd.to_datetime('2024-07-07')]})).mark_rule(color='red').encode(
-                x='date:T'
-            )
-            rule_7_10 = alt.Chart(pd.DataFrame({'date': [pd.to_datetime('2024-07-10')]})).mark_rule(color='red').encode(
-                x='date:T'
-            )
-            rule_7_14 = alt.Chart(pd.DataFrame({'date': [pd.to_datetime('2024-07-14')]})).mark_rule(color='red').encode(
-                x='date:T'
-            )
-            rule_8_20 = alt.Chart(pd.DataFrame({'date': [pd.to_datetime('2024-08-20')]})).mark_rule(color='red').encode(
-                x='date:T'
-            )
-            rule_8_23 = alt.Chart(pd.DataFrame({'date': [pd.to_datetime('2024-08-23')]})).mark_rule(color='red').encode(
-                x='date:T'
-            )
-            rule_9_1 = alt.Chart(pd.DataFrame({'date': [pd.to_datetime('2024-09-01')]})).mark_rule(color='red').encode(
-                x='date:T'
-            )
-            rule_9_3 = alt.Chart(pd.DataFrame({'date': [pd.to_datetime('2024-09-03')]})).mark_rule(color='red').encode(
-                x='date:T'
-            )
-            rule_9_6 = alt.Chart(pd.DataFrame({'date': [pd.to_datetime('2024-09-06')]})).mark_rule(color='red').encode(
-                x='date:T'
-            )
-            rule_9_17 = alt.Chart(pd.DataFrame({'date': [pd.to_datetime('2024-09-17')]})).mark_rule(color='red').encode(
-                x='date:T'
-            )
-            rule_9_19 = alt.Chart(pd.DataFrame({'date': [pd.to_datetime('2024-09-19')]})).mark_rule(color='red').encode(
-                x='date:T'
+            # Define the dates and colors for vertical lines
+            important_dates = pd.DataFrame({
+                'date': pd.to_datetime(['2024-05-14', '2024-05-17']),  # Add more dates as needed
+                'color': ['red', 'blue']  # Add more colors corresponding to dates
+            })
+
+            rules = alt.Chart(important_dates).mark_rule().encode(
+                x='date:T',
+                color=alt.Color('color:N', scale=None)
             )
 
             # Combine the base chart with the rules
-            final_chart = base_chart + rule_5_14 + rule_5_17
+            final_chart = base_chart + rules
 
             st.altair_chart(final_chart.interactive())
 
