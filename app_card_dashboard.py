@@ -29,7 +29,8 @@ def get_snowflake_connection():
         account=snowflake_account,
         database=snowflake_database,
         schema=snowflake_schema,
-        warehouse=snowflake_warehouse
+        warehouse=snowflake_warehouse,
+        role=snowflake_role
     )
 # Function to load data from Snowflake
 def load_data_from_snowflake(query):
