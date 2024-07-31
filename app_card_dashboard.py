@@ -41,14 +41,11 @@ def main():
         else:
             return title.lower().title()
 
-    # Streamlit file uploader
-    uploaded_file = 'App_Card_Data_0527_with_dates.csv'
-
+    df = load_data_snowflake()
+    
     if uploaded_file is not None:
-        df = load_data(uploaded_file)
 
-        # Convert 'DATE' column to datetime if it's not already
-        df['date'] = pd.to_datetime(df['date'])
+        df['date'] = pd.to_datetime(df['CREATE_TIMESTAMP']).dt.date
 
         # Renaming KPI's
         df.rename(columns={
