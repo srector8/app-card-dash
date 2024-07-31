@@ -20,10 +20,20 @@ def main():
     st.write('Ticks mark gamedays')
 
     # Function to load data
-    def load_data(file):
-        df = pd.read_csv(file)
+    def load_data_snowflake():
+        conn = snowflake.connector.connect(
+            user='SRECTOR@MOHEGANSUN.COM',
+            pw='Baseball118235!',
+            acc='MOHEGAN.EDW',
+            db='MOHEGAN_CTSUN_PROD_DB',
+            schema='CT_SUN_APPS_FEED',
+            wh='MSCT_CTSUN_WH_XS'
+        )
+        query = 'SELECT * FROM CARDS_WNBA_CON'
+        df = pd.read_sql(query, conn)
+        conn.close()
         return df
-
+            
     # Function to transform title
     def transform_title(title):
         if pd.isnull(title):
@@ -93,8 +103,8 @@ def main():
 
             # Define the dates and colors for vertical lines
             important_dates = pd.DataFrame({
-                'date': pd.to_datetime(['2024-05-14', '2024-05-17', '2024-05-23', '2024-05-28', '2024-05-31', '2024-06-04', '2024-06-08', '2024-06-10']),  # Add more dates as needed
-                'color': ['red', 'red', 'red', 'red', 'red', 'red', 'red', 'red']  # Add more colors corresponding to dates
+                'date': pd.to_datetime(['2024-05-14', '2024-05-17', '2024-05-23', '2024-05-28', '2024-05-31', '2024-06-04', '2024-06-08', '2024-06-10']),  
+                'color': ['red', 'red', 'red', 'red', 'red', 'red', 'red', 'red']  
             })
 
             rules = alt.Chart(important_dates).mark_rule().encode(
