@@ -10,6 +10,7 @@ Original file is located at
 import pandas as pd
 import altair as alt
 import streamlit as st
+import snowflake.connector
 
 def main():
     st.title("App Card Dashboard")
