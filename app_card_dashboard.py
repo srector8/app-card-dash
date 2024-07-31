@@ -23,16 +23,15 @@ snowflake_role = 'RO_CTSUN'
 
 # Establish Snowflake connection
 def get_snowflake_connection():
-    return snowflake.connector.connect(
+   return snowflake.connector.connect(
         user=snowflake_user,
         password=snowflake_password,
         account=snowflake_account,
         database=snowflake_database,
         schema=snowflake_schema,
         warehouse=snowflake_warehouse,
-        role=snowflake_role
+        role=snowflake_role 
     )
-
 # Function to load data from Snowflake
 def load_data_from_snowflake(query):
     conn = get_snowflake_connection()
