@@ -30,6 +30,7 @@ def get_snowflake_connection():
         database=snowflake_database,
         schema=snowflake_schema,
         warehouse=snowflake_warehouse
+        role=snowflake_role
     )
 
 # Function to load data from Snowflake
