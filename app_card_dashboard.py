@@ -13,7 +13,7 @@ import streamlit as st
 import snowflake.connector
 
 # Snowflake connection details
-snowflake_account = 'MOHEGAN.EDW'
+snowflake_account = 'MOHEGAN-EDW'
 snowflake_user = 'SRECTOR@MOHEGANSUN.COM'
 snowflake_password = 'Baseball118235!'
 snowflake_database = 'MOHEGAN_CTSUN_PROD_DB'
