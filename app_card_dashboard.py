@@ -62,7 +62,7 @@ def main():
         UTILITY_RATING, 
         CREATE_TIMESTAMP
     FROM 
-        your_table
+        CARDS_WNBA_CON
     """
 
     df = load_data_from_snowflake(query)
