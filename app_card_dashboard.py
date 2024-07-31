@@ -19,7 +19,7 @@ snowflake_password = 'Baseball118235!'
 snowflake_database = 'MOHEGAN_CTSUN_PROD_DB'
 snowflake_schema = 'CT_SUN_APPS_FEED'
 snowflake_warehouse = 'MSCT_CTSUN_WH_XS'
-snowflake_role = 'RO_CTSUN'
+snowflake_role = 'SUN-APP-EDW-CTSUN'
 
 # Establish Snowflake connection
 def get_snowflake_connection():
