@@ -15,7 +15,7 @@ import snowflake.connector
 # Snowflake connection details
 snowflake_account = 'MOHEGAN-EDW'
 snowflake_user = 'SRECTOR@MOHEGANSUN.COM'
-snowflake_password = 'Baseball118235!'
+snowflake_password = '---!'
 snowflake_database = 'MOHEGAN_CTSUN_PROD_DB'
 snowflake_schema = 'CT_SUN_APPS_FEED'
 snowflake_warehouse = 'MSCT_CTSUN_WH_XS'
