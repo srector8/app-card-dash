@@ -124,9 +124,9 @@ def main():
             game_day_mean = pd.Series(game_day_values).mean()
             post_game_mean = pd.Series(post_game_values).mean()
 
-            st.write(f"The mean {selected_kpi.lower()} one day before game days is: {pre_game_mean}")
-            st.write(f"The mean {selected_kpi.lower()} on game days is: {game_day_mean}")
-            st.write(f"The mean {selected_kpi.lower()} one day after game days is: {post_game_mean}")
+            st.write(f"The mean {selected_kpi.lower()} one day before game days is: {pre_game_mean:.2f}")
+            st.write(f"The mean {selected_kpi.lower()} on game days is: {game_day_mean:.2f}")
+            st.write(f"The mean {selected_kpi.lower()} one day after game days is: {post_game_mean:.2f}")
 
         # Plot the time series for the selected card title and KPI
         if card_title and selected_kpi:
